@@ -4,6 +4,10 @@ const checkVowel = (char) => {
 }
 
 const countVowel = (str) => {
+    if(typeof(str) !== "string")
+        return -1;
+    if(str.length  === 0)
+        return -1;
     let totalCount = 0;
     for(let i = 0; i < str.length; ++i) {
         totalCount += checkVowel(str[i]);
@@ -12,6 +16,10 @@ const countVowel = (str) => {
 }
 
 function totalVowelInString(str) {
+    if(typeof(str) !== "string")
+        return -1;
+    if(str.length  === 0)
+        return -1;
     let totalCount = 0;
     for(let i = 0; i < str.length; ++i) {
         totalCount += checkVowel(str[i]);
@@ -19,5 +27,7 @@ function totalVowelInString(str) {
     return totalCount;
 } 
 
-console.log(countVowel("codeacademy"));
-console.log(totalVowelInString("codeacademy"));
+module.exports = { countVowel, totalVowelInString };
+
+// console.log(countVowel("codeacademy"));
+// console.log(totalVowelInString("codeacademy"));
