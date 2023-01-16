@@ -3,6 +3,7 @@
     "javascripting": "^2.7.4"
   },
   "devDependencies": {
+    "eslint": "^8.32.0",
     "jest": "^29.3.1"
   },
   "scripts": {

@@ -1,17 +1,17 @@
 const findSubstringInString = (inputStr) => {
-    if(typeof(inputStr) !== "string")
-        return false;
-    if(inputStr.length < 6)
-        return false;
-    return inputStr.includes("Script");
-}
+  if(typeof(inputStr) !== 'string')
+    return false;
+  if(inputStr.length < 6)
+    return false;
+  return inputStr.includes('Script');
+};
 
 function isSubstringInString(inputStr) {
-    if(typeof(inputStr) !== "string")
-        return false;
-    if(inputStr.length < 6)
-        return false;
-    return inputStr.includes("Script");
+  if(typeof(inputStr) !== 'string')
+    return false;
+  if(inputStr.length < 6)
+    return false;
+  return inputStr.includes('Script');
 }
 
 module.exports = { findSubstringInString, isSubstringInString };
