@@ -4,14 +4,11 @@ const scoreCalculator = (rolls) => {
   let index = 0;
   let frameNumber = 1;
   while(index < rolls.length) { 
-    console.log(totalScore + " " + frameNumber);
+    console.log(totalScore + " " + frameNumber + " " + index);
     if( frameNumber === 10 ) { // CASE FOR 10th FRAME
-      // console.log("if");
       totalScore += rolls[index];
       index += 1;
     } else {
-      // console.log("else")
-      
       if ( rolls[index] === 10 ) { // CASE FOR STRIKE
         totalScore += 10;
         totalScore += index + 1 < rolls.length ? rolls[ index + 1 ] : 0;
@@ -30,19 +27,15 @@ const scoreCalculator = (rolls) => {
     }
     
   }
-  // rolls.forEach((point, index) => {
-  //   if( point === 10 ) { // CASE OF STRIKE
-      
-  //   } 
-
-  // });
   return totalScore;
 };
 
 // Function to find the best score in a set of bowling games.
 const bestScoreFinder = ( games ) => {
+  return games.reduce((bestScore, currentGame) => {
+    let gameScore = scoreCalculator(currentGame);
+    return bestScore < gameScore ? gameScore : bestScore;
+  }, -1);
+};
 
-}
-
-let scores = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10 ];
-console.log(scoreCalculator(scores));
+module.exports = { scoreCalculator, bestScoreFinder };
