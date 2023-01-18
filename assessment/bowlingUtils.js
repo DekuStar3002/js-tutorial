@@ -4,8 +4,7 @@ const scoreCalculator = (rolls) => {
   let index = 0;
   let frameNumber = 1;
   while(index < rolls.length) { 
-    console.log(totalScore + " " + frameNumber + " " + index);
-    if( frameNumber === 10 ) { // CASE FOR 10th FRAME
+    if( frameNumber >= 9 ) { // CASE FOR 10th FRAME
       totalScore += rolls[index];
       index += 1;
     } else {
@@ -14,7 +13,7 @@ const scoreCalculator = (rolls) => {
         totalScore += index + 1 < rolls.length ? rolls[ index + 1 ] : 0;
         totalScore += index + 2 < rolls.length ? rolls[ index + 2 ] : 0;
         index += 1;
-      } else if ( rolls[ index + 1 ] + rolls[ index + 2 ] === 10 ) { // CASE FOR SPARE
+      } else if ( rolls[ index ] + rolls[ index + 1 ] === 10 ) { // CASE FOR SPARE
         totalScore += 10;
         totalScore += rolls[ index + 2 ];
         index += 2;
@@ -23,9 +22,8 @@ const scoreCalculator = (rolls) => {
         totalScore += rolls[ index + 1 ];
         index += 2;
       }
-      frameNumber += 1;
     }
-    
+    frameNumber += 1;
   }
   return totalScore;
 };
@@ -37,5 +35,7 @@ const bestScoreFinder = ( games ) => {
     return bestScore < gameScore ? gameScore : bestScore;
   }, -1);
 };
+
+console.log(scoreCalculator([6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
 
 module.exports = { scoreCalculator, bestScoreFinder };
