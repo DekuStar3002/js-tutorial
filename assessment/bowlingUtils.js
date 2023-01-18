@@ -1,9 +1,15 @@
 // Function to calculate the score of a single game of bowling.
 const scoreCalculator = (rolls) => {
+  if(!Array.isArray(rolls))
+    throw new TypeError('input argumnet should be an array');
+  if(rolls.length < 10)
+    throw new Error('inputed array should contain atleast 10 elements');
   let totalScore = 0;
   let index = 0;
   let frameNumber = 1;
   while(index < rolls.length) { 
+    if( !Number.isInteger(rolls[index]) )
+      throw new TypeError('array element should be integer');
     if( frameNumber >= 9 ) { // CASE FOR 10th FRAME
       totalScore += rolls[index];
       index += 1;
@@ -30,12 +36,14 @@ const scoreCalculator = (rolls) => {
 
 // Function to find the best score in a set of bowling games.
 const bestScoreFinder = ( games ) => {
-  return games.reduce((bestScore, currentGame) => {
-    let gameScore = scoreCalculator(currentGame);
-    return bestScore < gameScore ? gameScore : bestScore;
-  }, -1);
+  try {
+    return games.reduce((bestScore, currentGame) => {
+      let gameScore = scoreCalculator(currentGame);
+      return bestScore < gameScore ? gameScore : bestScore;
+    }, -1);
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
-
-console.log(scoreCalculator([6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
 
 module.exports = { scoreCalculator, bestScoreFinder };
